@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  database: test_notes_development
+  username:
+  password:
+  host: localhost
+
+test:
+  adapter: postgresql
+  database: test_notes_test
+  username:
+  password:
+  host: localhost
+
+production:
+  adapter: postgresql
+  database: test_notes_production
+  username:
+  password:
+  host: localhost

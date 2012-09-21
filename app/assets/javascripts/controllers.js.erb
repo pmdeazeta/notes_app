@@ -1,0 +1,55 @@
+function NotebooksCtrl($scope, Notebook) {
+  $scope.notebooks = Notebook.query();
+
+  $scope.createNotebook = function (notebook) {
+    $scope.notebook = new Notebook();
+    $scope.notebook.name = $scope.newNotebookName
+    Notebook.save($scope.notebook, function(response){
+      $scope.notebooks.push(response)
+      $scope.newNotebookName = ""
+    })
+  }
+
+  $scope.deleteNotebook = function(notebook){
+    $scope.notebook = notebook
+    Notebook.delete({id: notebook.id}, function(response){
+      $scope.notebooks = _.filter($scope.notebooks, function(notebook){
+        return !(notebook.id === $scope.notebook.id)
+      })
+    })
+  }
+}
+
+
+function NotesCtrl($scope, $routeParams, Note) {
+  $scope.notes = Note.query({notebook_id: $routeParams.notebook_id})
+  $scope.getNote = function(note){
+   $scope.note = note
+  }
+  $scope.syncNote = function(note){
+    $scope.note.$update({notebook_id: $scope.note.notebook_id, id: note.id})
+  }
+  $scope.deleteNote = function(note){
+    $scope.note = note
+    Note.delete(note, function(response){
+      $scope.notes = _.filter($scope.notes, function(note){
+        return !(note.id === $scope.note.id)
+      })
+    })
+  }
+
+  $scope.createNote = function (note) {
+    $scope.note.name = $scope.formNoteName
+    Note.save({notebook_id: $routeParams.notebook_id}, $scope.note, function(response){
+      $scope.notes.push(response)
+      $scope.formNoteName = ""
+      $scope.note = response
+    })
+  }
+
+  $scope.clear = function(){
+    $scope.note = new Note();
+  }
+}
+
+
