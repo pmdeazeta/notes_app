@@ -1,4 +1,4 @@
-angular.module('notesapp', ['notebookServices', 'noteServices', 'ui.directives']).
+angular.module('notesapp', ['notebookServices', 'noteServices', 'ui.directives', 'myFilter', 'myDirective']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/notebooks', {templateUrl: '<%= asset_path("notebooks.html") %>', controller: NotebooksCtrl}).

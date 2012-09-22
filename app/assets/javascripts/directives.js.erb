@@ -1,0 +1,12 @@
+angular.module('myDirective',[])
+  .directive('customElement', function(){
+    return {
+      restrict: 'E',
+      templateUrl: "<%= asset_path("partial.html")%>",
+      scope: {
+        name: 'bind'
+      }
+
+    }
+  
+  })

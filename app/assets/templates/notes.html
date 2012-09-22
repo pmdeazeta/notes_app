@@ -16,17 +16,28 @@
        </div>
 
       <div class="span6">
+
         <hr />
-          <form class="form-horizontal">
-            <input placeholder="Name..." ui-event="{focus : 'clear()'}" type="text" ng-model="formNoteName" ng-model-instant/>
-            <a class="btn" ng-click="createNote()"><i class="icon-plus"></i> Create Note</a>
-          </form>
-          <ul class="unstyled">
-            <li ng-repeat="note in notes | filter:query | orderBy:orderProp">
-              <a class="btn btn-large btn-block span4" ng-click="getNote(note)">{{note.name}}</a>
-              <a class="btn btn-large span1" ng-click="deleteNote(note)"><i class="icon-trash"></i></a>
-            </li>
-        </ul>
+        <form class="form-horizontal">
+          <input placeholder="Name..." ui-event="{focus : 'clear()'}" type="text" ng-model="formNoteName" ng-model-instant/>
+          <a class="btn" ng-click="createNote()"><i class="icon-plus"></i> Create Note</a>
+        </form>
+
+        <table class="table table-hover">
+          <tbody>
+            <tr ng-repeat="note in notes | filter:query | orderBy:orderProp">
+             <td>
+               <a><span  ng-click="deleteNote(note)" class="badge badge-important">x</i></span></a>
+               <span ng-click="getNote(note)">
+                 <p><strong>{{note.name}}</strong></p>
+                 <p class="muted">{{note.message | truncate:10}}</p>
+                 <p class="muted">{{note.created_at}}</p>
+                 <p class="muted">{{note.updated_at}}</p>
+               </span>
+             </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="span6">
