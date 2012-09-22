@@ -1,4 +1,5 @@
 class NotebooksController < ApplicationController
+  before_filter :authenticate_user!
   # GET /notebooks
   # GET /notebooks.json
   def index

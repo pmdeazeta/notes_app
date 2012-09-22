@@ -6,6 +6,7 @@ gem 'rails', '3.2.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'devise'
 
 
 # Gems used only for assets and not required
@@ -25,7 +26,7 @@ end
 gem 'jquery-rails'
 
 group :development do
-  gem 'pg'
+  gem 'pry'
   gem 'thin'
 end
 
