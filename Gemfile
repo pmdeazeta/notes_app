@@ -7,6 +7,7 @@ gem 'rails', '3.2.7'
 
 gem 'pg'
 gem 'devise'
+gem 'thin'
 
 
 # Gems used only for assets and not required
@@ -27,7 +28,6 @@ gem 'jquery-rails'
 
 group :development do
   gem 'pry'
-  gem 'thin'
 end
 
 # To use ActiveModel has_secure_password
