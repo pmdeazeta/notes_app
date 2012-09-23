@@ -1,0 +1,50 @@
+<div class="span12">
+  <div class="row">
+    <div class="span6">
+      <h2>Notes</h2>
+      <div class="span6">
+        <i class="icon-search"></i> <input placeholder="Search..." ng-model="query">
+      </div>
+      <hr />
+      <div class="span6">
+        <i class="icon-arrow-up"></i>
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="created_at">Newest</option>
+          <option value="updated_at">Modified</option>
+        </select>    
+       </div>
+
+      <div class="span6">
+
+        <hr />
+        <form class="form-horizontal">
+          <input placeholder="Name..." ui-event="{focus : 'clear()'}" type="text" ng-model="formNoteName" ng-model-instant/>
+          <a class="btn" ng-click="createNote()"><i class="icon-plus"></i> Create Note</a>
+        </form>
+
+        <table class="table table-hover">
+          <tbody>
+            <tr ng-repeat="note in notes | filter:query | orderBy:orderProp">
+             <td>
+               <a><span  ng-click="deleteNote(note)" class="badge badge-important">x</i></span></a>
+               <span ng-click="getNote(note)">
+                 <p><strong>{{note.name}}</strong></p>
+                 <p class="muted">{{note.message | truncate:10}}</p>
+                 <p class="muted">{{note.created_at}}</p>
+                 <p class="muted">{{note.updated_at}}</p>
+               </span>
+             </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="span6">
+      <h2>{{note.name}}</h2>
+      <form class="form-horizontal">
+        <textarea ng-model="note.message" ui-event="{ blur : 'syncNote(note)'}" rows="10" style="margin: 0px; width: 367px; height: 575px;">{{note}}</textarea>
+      </form>
+    </div>
+  </div>
+</div>
